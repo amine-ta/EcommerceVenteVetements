@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-10-08 14:54:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entite.Produitboutique" table="PRODUITBOUTIQUE" schema="ETEAM6" optimistic-lock="version">
+        <id name="idproduit" type="big_decimal">
+            <column name="IDPRODUIT" precision="20" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="categorieboutique" class="Entite.Categorieboutique" fetch="select">
+            <column name="IDCATEGORIE" precision="3" scale="0" />
+        </many-to-one>
+        <many-to-one name="factureboutique" class="Entite.Factureboutique" fetch="select">
+            <column name="FACTURE" precision="30" scale="0" />
+        </many-to-one>
+        <many-to-one name="marqueboutique" class="Entite.Marqueboutique" fetch="select">
+            <column name="IDMARQUE" precision="2" scale="0" />
+        </many-to-one>
+        <property name="nomproduit" type="string">
+            <column name="NOMPRODUIT" length="50" />
+        </property>
+        <property name="description" type="string">
+            <column name="DESCRIPTION" length="500" />
+        </property>
+        <property name="prix" type="big_decimal">
+            <column name="PRIX" precision="6" />
+        </property>
+        <property name="formatpro" type="string">
+            <column name="FORMATPRO" length="10" />
+        </property>
+        <property name="quantiteenstock" type="java.lang.Integer">
+            <column name="QUANTITEENSTOCK" precision="6" scale="0" />
+        </property>
+        <property name="image" type="string">
+            <column name="IMAGE" length="200" />
+        </property>
+        <set name="tailleboutiques" table="TAILLEBOUTIQUE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUIT" precision="20" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="Entite.Tailleboutique" />
+        </set>
+        <set name="descritptionboutiques" table="DESCRITPTIONBOUTIQUE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="PRODUIT" precision="20" scale="0" />
+            </key>
+            <one-to-many class="Entite.Descritptionboutique" />
+        </set>
+        <set name="ligneCommandeboutiques" table="LIGNE_COMMANDEBOUTIQUE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="IDPRODUIT" precision="20" scale="0" not-null="true" />
+            </key>
+            <one-to-many class="Entite.LigneCommandeboutique" />
+        </set>
+    </class>
+</hibernate-mapping>

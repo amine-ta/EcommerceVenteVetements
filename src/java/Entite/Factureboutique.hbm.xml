@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-10-08 14:54:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entite.Factureboutique" table="FACTUREBOUTIQUE" schema="ETEAM6" optimistic-lock="version">
+        <id name="idfacture" type="big_decimal">
+            <column name="IDFACTURE" precision="30" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <property name="prixht" type="big_decimal">
+            <column name="PRIXHT" precision="7" />
+        </property>
+        <property name="prixttc" type="big_decimal">
+            <column name="PRIXTTC" precision="7" />
+        </property>
+        <property name="datefacturation" type="date">
+            <column name="DATEFACTURATION" length="7" not-null="true" />
+        </property>
+        <set name="produitboutiques" table="PRODUITBOUTIQUE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FACTURE" precision="30" scale="0" />
+            </key>
+            <one-to-many class="Entite.Produitboutique" />
+        </set>
+        <set name="paiementboutiques" table="PAIEMENTBOUTIQUE" inverse="true" lazy="true" fetch="select">
+            <key>
+                <column name="FACTURE" precision="30" scale="0" />
+            </key>
+            <one-to-many class="Entite.Paiementboutique" />
+        </set>
+    </class>
+</hibernate-mapping>

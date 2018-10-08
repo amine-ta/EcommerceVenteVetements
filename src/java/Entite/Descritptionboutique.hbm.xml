@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-10-08 14:54:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entite.Descritptionboutique" table="DESCRITPTIONBOUTIQUE" schema="ETEAM6" optimistic-lock="version">
+        <id name="idDescription" type="big_decimal">
+            <column name="ID_DESCRIPTION" precision="20" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="produitboutique" class="Entite.Produitboutique" fetch="select">
+            <column name="PRODUIT" precision="20" scale="0" />
+        </many-to-one>
+        <property name="langue" type="string">
+            <column name="LANGUE" length="500" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated 2018-10-08 14:54:29 by Hibernate Tools 4.3.1 -->
+<hibernate-mapping>
+    <class name="Entite.Paiementboutique" table="PAIEMENTBOUTIQUE" schema="ETEAM6" optimistic-lock="version">
+        <id name="idpaiement" type="big_decimal">
+            <column name="IDPAIEMENT" precision="30" scale="0" />
+            <generator class="assigned" />
+        </id>
+        <many-to-one name="factureboutique" class="Entite.Factureboutique" fetch="select">
+            <column name="FACTURE" precision="30" scale="0" />
+        </many-to-one>
+        <property name="typepaiement" type="string">
+            <column name="TYPEPAIEMENT" length="30" />
+        </property>
+        <property name="datedepaiement" type="date">
+            <column name="DATEDEPAIEMENT" length="7" />
+        </property>
+        <property name="montantpayer" type="big_decimal">
+            <column name="MONTANTPAYER" precision="7" />
+        </property>
+    </class>
+</hibernate-mapping>
